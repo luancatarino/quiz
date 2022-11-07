@@ -1,3 +1,4 @@
+import { shuffle } from "../functions/arrays";
 import AnswerModel from "./answer";
 
 export default class QuestionModel {
@@ -6,7 +7,7 @@ export default class QuestionModel {
     #answers: AnswerModel[];
     #correct: boolean;
 
-    constructor(id: number, statement: string, answers: AnswerModel[], correct: boolean) {
+    constructor(id: number, statement: string, answers: AnswerModel[], correct = false) {
         this.#id = id;
         this.#statement = statement;
         this.#answers = answers;
@@ -38,11 +39,16 @@ export default class QuestionModel {
         return false;
     }
 
+    shuffleAnswers(): QuestionModel {
+        let answersShuffled = shuffle(this.#answers);
+        return new QuestionModel(this.#id, this.#statement, answersShuffled, this.#correct);
+    }
+
     convertToObject() {
         return {
             id: this.#id,
             statement: this.#statement,
-            answers: this.#answers.map(resp => resp.convertToObject()),
+            answers: this.#answers.map((resp) => resp.convertToObject()),
             correct: this.#correct,
         };
     }

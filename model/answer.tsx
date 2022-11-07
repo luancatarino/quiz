@@ -3,7 +3,7 @@ export default class AnswerModel {
     #correct: boolean;
     #revealed: boolean;
 
-    constructor(value: string, correct: boolean, revealed: false) {
+    constructor(value: string, correct: boolean, revealed = false) {
         this.#value = value;
         this.#correct = correct;
         this.#revealed = revealed;
