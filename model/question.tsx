@@ -39,6 +39,17 @@ export default class QuestionModel {
         return false;
     }
 
+    answerWith(index: number): QuestionModel {
+        const isCorrect = this.#answers[index]?.correct;
+        const newAnswers = this.#answers.map((resp, i) => {
+            const selectedAnswer = index === i;
+            const shouldReveal = selectedAnswer || resp.correct;
+            return shouldReveal ? resp.revealAnswer() : resp;
+        });
+
+        return new QuestionModel(this.id, this.statement, newAnswers, isCorrect);
+    }
+
     shuffleAnswers(): QuestionModel {
         let answersShuffled = shuffle(this.#answers);
         return new QuestionModel(this.#id, this.#statement, answersShuffled, this.#correct);
@@ -48,8 +59,9 @@ export default class QuestionModel {
         return {
             id: this.#id,
             statement: this.#statement,
-            answers: this.#answers.map((resp) => resp.convertToObject()),
+            answered: this.answered,
             correct: this.#correct,
+            answers: this.#answers.map((resp) => resp.convertToObject()),
         };
     }
 }
