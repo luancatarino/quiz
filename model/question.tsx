@@ -39,6 +39,11 @@ export default class QuestionModel {
         return false;
     }
 
+    get notAnswered() {
+       return !this.answered
+    }
+
+
     answerWith(index: number): QuestionModel {
         const isCorrect = this.#answers[index]?.correct;
         const newAnswers = this.#answers.map((resp, i) => {

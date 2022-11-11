@@ -1,5 +1,6 @@
 import QuestionModel from "../../model/question";
 import Answer from "../Answer";
+import Countdown from "../Countdown";
 import Statement from "../Statement";
 import { Container } from "./styles";
 
@@ -12,7 +13,9 @@ const letters = [
 
 interface QuestionProps {
     value: QuestionModel;
+    timeToAnswer?: number;
     onResponse: (index: number) => void;
+    outOfTime: () => void;
 }
 
 export default function Question(props: QuestionProps) {
@@ -27,6 +30,7 @@ export default function Question(props: QuestionProps) {
     return (
         <Container>
             <Statement text={question.statement} />
+            <Countdown duration={props.timeToAnswer ?? 10} outOfTime={props.outOfTime}/>
             {renderAnswer()}
         </Container>
     );

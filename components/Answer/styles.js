@@ -46,4 +46,29 @@ export const Container = styled.div`
             font-weight: 700;
         }
     }
+
+    .backCard > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        border-radius: 12px;
+    }
+
+    .backCard {
+        .correct {
+            background-color: #2baa6d;
+        }
+
+        .wrong {
+            background-color: #e44a4c;
+        }
+
+        .correct .value,
+        .wrong .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    }
 `;
