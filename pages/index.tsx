@@ -40,7 +40,7 @@ export default function Home() {
     };
 
     const idNextQuestion = () => {
-        const nextIndex = idQuestions.indexOf(question.id) + 1;
+        const nextIndex = idQuestions.indexOf(question!.id) + 1;
         return idQuestions[nextIndex];
     };
 

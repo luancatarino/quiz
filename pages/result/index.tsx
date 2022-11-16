@@ -4,8 +4,8 @@ import { Container } from "./styles";
 export default function Result() {
     const router = useRouter();
 
-    const total = +router.query.total;
-    const corrects = +router.query.correct;
+    const total = +router.query.total!;
+    const corrects = +router.query.correct!;
     const percentage = Math.round((corrects / total) * 100);
 
     return (
