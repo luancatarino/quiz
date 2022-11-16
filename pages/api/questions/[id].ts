@@ -11,6 +11,4 @@ export default function handler(req: any, res: any) {
     } else {
         res.status(204).send();
     }
-
-    res.status(200).json(questions[0].convertToObject());
 }

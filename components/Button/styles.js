@@ -9,4 +9,10 @@ export const ButtonComponent = styled.button`
     margin-top: 40px;
     font-weight: 200;
     font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    :hover {
+        transform: scale(1.1);
+    }
 `;

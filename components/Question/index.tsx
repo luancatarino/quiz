@@ -5,16 +5,16 @@ import Statement from "../Statement";
 import { Container } from "./styles";
 
 const letters = [
-    {value: "A", color: "#F2C866"},
-    {value: "B", color: "#F266BA"},
-    {value: "C", color: "#85D4F2"},
-    {value: "D", color: "#BCE596"}
-]
+    { value: "A", color: "#F2C866" },
+    { value: "B", color: "#F266BA" },
+    { value: "C", color: "#85D4F2" },
+    { value: "D", color: "#BCE596" },
+];
 
 interface QuestionProps {
     value: QuestionModel;
     timeToAnswer?: number;
-    onResponse: (index: number) => void;
+    answerProvided: (index: number) => void;
     outOfTime: () => void;
 }
 
@@ -23,14 +23,23 @@ export default function Question(props: QuestionProps) {
 
     const renderAnswer = () => {
         return question.answers.map((resp, i) => {
-            return <Answer value={resp} key={i} index={i} letter={letters[i].value} letterBGColor={letters[i].color} onResponse={props.onResponse}/>;
+            return (
+                <Answer
+                    value={resp}
+                    key={`${question.id}-${i}`}
+                    index={i}
+                    letter={letters[i].value}
+                    letterBGColor={letters[i].color}
+                    answerProvided={props.answerProvided}
+                />
+            );
         });
     };
 
     return (
         <Container>
             <Statement text={question.statement} />
-            <Countdown duration={props.timeToAnswer ?? 10} outOfTime={props.outOfTime}/>
+            <Countdown key={question.id} duration={props.timeToAnswer ?? 10} outOfTime={props.outOfTime} />
             {renderAnswer()}
         </Container>
     );

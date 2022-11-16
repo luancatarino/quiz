@@ -6,12 +6,12 @@ interface AnswerProps {
     index: number;
     letter: string;
     letterBGColor: string;
-    onResponse: (index: number) => void;
+    answerProvided: (index: number) => void;
 }
 
 export default function Answer(props: AnswerProps) {
     return (
-        <Container onClick={() => props.onResponse(props.index)}>
+        <Container onClick={() => props.answerProvided(props.index)}>
             <div className="answerContent">
                 {!props.value.revealed ? (
                     <div className="frontCard">

@@ -40,9 +40,8 @@ export default class QuestionModel {
     }
 
     get notAnswered() {
-       return !this.answered
+        return !this.answered;
     }
-
 
     answerWith(index: number): QuestionModel {
         const isCorrect = this.#answers[index]?.correct;
@@ -58,6 +57,11 @@ export default class QuestionModel {
     shuffleAnswers(): QuestionModel {
         let answersShuffled = shuffle(this.#answers);
         return new QuestionModel(this.#id, this.#statement, answersShuffled, this.#correct);
+    }
+
+    static createUsingObject(obj: QuestionModel): QuestionModel {
+        const answers = obj.answers.map((resp) => AnswerModel.createUsingObject(resp));
+        return new QuestionModel(obj.id, obj.statement, answers, obj.correct);
     }
 
     convertToObject() {
