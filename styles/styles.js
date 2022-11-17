@@ -5,4 +5,10 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    font-size: 2rem;
+
+    .content {
+        display: flex;
+    }
 `;

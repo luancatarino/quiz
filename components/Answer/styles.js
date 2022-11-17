@@ -6,11 +6,18 @@ export const Container = styled.div`
     margin: 10px;
     min-width: 500px;
     width: 80%;
+    perspective: 1000px;
 
     .answerContent {
         position: relative;
         display: flex;
         flex: 1;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .answerRevealed.answerContent {
+        transform: rotateY(180deg);
     }
 
     .frontCard,
@@ -19,6 +26,8 @@ export const Container = styled.div`
         display: flex;
         height: 100%;
         width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
     .frontCard {
@@ -57,6 +66,8 @@ export const Container = styled.div`
     }
 
     .backCard {
+        transform: rotateY(180deg);
+
         .correct {
             background-color: #2baa6d;
         }

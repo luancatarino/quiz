@@ -10,31 +10,30 @@ interface AnswerProps {
 }
 
 export default function Answer(props: AnswerProps) {
+    const answerRevealed = props.value.revealed ? "answerRevealed" : "";
     return (
         <Container onClick={() => props.answerProvided(props.index)}>
-            <div className="answerContent">
-                {!props.value.revealed ? (
-                    <div className="frontCard">
-                        <div className="letter" style={{ backgroundColor: props.letterBGColor }}>
-                            {props.letter}
+            <div className={`${answerRevealed} ${"answerContent"}`}>
+                <div className="frontCard">
+                    <div className="letter" style={{ backgroundColor: props.letterBGColor }}>
+                        {props.letter}
+                    </div>
+                    <div className="value">{props.value.value}</div>
+                </div>
+
+                <div className="backCard">
+                    {props.value.correct ? (
+                        <div className="correct">
+                            <div>A resposta certa é...</div>
+                            <div className="value">{props.value.value}</div>
                         </div>
-                        <div className="value">{props.value.value}</div>
-                    </div>
-                ) : (
-                    <div className="backCard">
-                        {props.value.correct ? (
-                            <div className="correct">
-                                <div>A resposta certa é...</div>
-                                <div className="value">{props.value.value}</div>
-                            </div>
-                        ) : (
-                            <div className="wrong">
-                                <div>A resposta informada está errada...</div>
-                                <div className="value">{props.value.value}</div>
-                            </div>
-                        )}
-                    </div>
-                )}
+                    ) : (
+                        <div className="wrong">
+                            <div>A resposta informada está errada...</div>
+                            <div className="value">{props.value.value}</div>
+                        </div>
+                    )}
+                </div>
             </div>
         </Container>
     );
