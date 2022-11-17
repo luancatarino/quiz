@@ -11,12 +11,14 @@ export default function Result() {
     const percentage = Math.round((corrects / total) * 100);
 
     const bgColorPercentageCorrect = () => {
-        if (percentage <= 33) {
+        if (percentage <= 30) {
             return "#de6a33";
-        } else if (percentage >= 33 && percentage <= 66) {
+        } else if (percentage > 30 && percentage <= 70) {
             return "#ffa500 ";
+        } else if (percentage > 70 && percentage < 100) {
+            return "#6aa8de";
         } else {
-            return "#9CD2A4";
+            return "#01ff27";
         }
     };
 
@@ -28,7 +30,7 @@ export default function Result() {
                 <Statistic text="Certas" value={corrects} bgColor="#9Cd2A4" />
                 <Statistic text="Percentual" value={percentage} bgColor={bgColorPercentageCorrect()} />
             </div>
-            <Button href="/" text="Tentar Novamente"/>
+            <Button href="/" text="Tentar Novamente" />
         </Container>
     );
 }
