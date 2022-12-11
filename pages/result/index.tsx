@@ -24,7 +24,7 @@ export default function Result() {
 
     return (
         <Container>
-            <h1>Resultado</h1>a
+            <h1>Resultado</h1>
             <div className="content">
                 <Statistic text="Perguntas" value={total} />
                 <Statistic text="Certas" value={corrects} bgColor="#9Cd2A4" />
