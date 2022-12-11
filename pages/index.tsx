@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Quiz from "../components/Quiz";
 import QuestionModel from "../model/question";
 
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "https://quiz-portuguese.vercel.app/api";
 
 export default function Home() {
     const router = useRouter();
@@ -63,14 +63,14 @@ export default function Home() {
         });
     };
 
-    return question ? (
-        <Quiz
-            question={question}
-            last={idNextQuestion() === undefined}
-            questionAnswered={questionAnswered}
-            goToNextStep={goToNextStep}
-        />
-    ) : (
-        false
+    return (
+        question && (
+            <Quiz
+                question={question}
+                last={idNextQuestion() === undefined}
+                questionAnswered={questionAnswered}
+                goToNextStep={goToNextStep}
+            />
+        )
     );
 }
